@@ -4,7 +4,6 @@ import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { UnsafeBurnerWalletAdapter } from '@solana/wallet-adapter-wallets';
 import {
     WalletModalProvider,
-    WalletConnectButton,
     WalletDisconnectButton,
     WalletMultiButton
 } from '@solana/wallet-adapter-react-ui';
@@ -17,14 +16,13 @@ import '@solana/wallet-adapter-react-ui/styles.css';
 function App() {
 
   return (
+    // https://solana-devnet.g.alchemy.com/v2/IR7u23Ytxfa-vBJZhy2fXkTnvxKGUPUa | https://api.devnet.solana.com
     <ConnectionProvider endpoint={"https://solana-devnet.g.alchemy.com/v2/IR7u23Ytxfa-vBJZhy2fXkTnvxKGUPUa"}>
+      {/* you have to pass wallets here, that don't follow the standards. metamask, phantom, backpack will auto-detect the wallets */}
       <WalletProvider wallets={[]} autoConnect>
           <WalletModalProvider>
-            <WalletMultiButton></WalletMultiButton>
-            <WalletDisconnectButton></WalletDisconnectButton>
-            <div>
-              hi there <b>hello</b>
-            </div>
+            <WalletMultiButton></WalletMultiButton> <br /><br />
+            <WalletDisconnectButton></WalletDisconnectButton> <br />
             <Airdrop />
           </WalletModalProvider>
       </WalletProvider>
