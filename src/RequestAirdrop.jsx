@@ -1,7 +1,7 @@
 import { useConnection, useWallet } from "@solana/wallet-adapter-react"
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 
-export function Airdrop() {
+export function RequestAirdrop() {
     const wallet = useWallet();
     const { connection } = useConnection();
 
@@ -11,20 +11,10 @@ export function Airdrop() {
         alert("airdropped sol");
     }
 
-    async function getBalance() { 
-        if (wallet.publicKey) {
-            const balance = await connection.getBalance(wallet.publicKey);
-            document.getElementById("balance").innerHTML = balance / LAMPORTS_PER_SOL;
-        }
-    }
-    
-    getBalance();
-
     return <div>
         {wallet.publicKey ?
             <>
                 Public Address: {wallet.publicKey?.toBase58()}<br/><br/> {/* solana address is 58 bit */}
-                <p>SOL Balance: <span id="balance"></span></p>
             </>
         : null }
         <input id="amount" type="text" placeholder="Amount"/>
